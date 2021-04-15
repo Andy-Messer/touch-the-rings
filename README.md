@@ -16,7 +16,7 @@ Installing under ...
 
 Touch_the_rings can be reached at:
 
-#E-mail: krotov.ai@phystech.edu
+E-mail: krotov.ai@phystech.edu
 ---
 
 
