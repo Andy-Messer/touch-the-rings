@@ -1,0 +1,90 @@
+<RingsGame>
+    FloatLayout:
+        size: root.size_window
+        BackGround:
+
+
+    BoxLayout:
+        size: root.size_window
+        Image:
+            source: 'rings/circles/cian.png'
+            size: self.size
+
+    GridLayout:
+        cols: 2
+        size: root.size_window
+        Button:
+            background_color: 1, 0, 0, 0
+            on_press: root.press(1)
+
+        Button:
+            background_color: 1, 0, 0, 0
+            on_press: root.press(2)
+
+    FloatLayout:
+        size: root.size_window
+
+        TaskLabel:
+
+            size_hint: (0.20, 0.20)
+            pos_hint:{"x":.8, "y":.8}
+            text: "[color=ffffff]" + str(root.text_task) + "[/color]"
+
+    FloatLayout:
+        size: root.size_window
+
+        ScoreLabel:
+
+            size_hint: (0.20, 0.20)
+            pos_hint:{"x":0, "y":.8}
+            text: "[color=ffffff]" + str(root.score_text) + "[/color]"
+
+
+<TaskLabel>:
+    font_size: 70
+    markup: True
+
+    canvas.before:
+        Color:
+            rgba: (1, 0, 0, .5)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<ScoreLabel>:
+    font_size: 70
+    markup: True
+
+    canvas.before:
+        Color:
+            rgba: (1, 0, 0, .5)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Ball>
+    FloatLayout:
+        size: root.size_window
+        Image:
+            source: root.ball_status
+            size: self.size
+
+<MyClock>
+    size: root.width, root.height
+    font_size: 70
+
+    size_hint: (2,2)
+    pos_hint:{"x":0, "y":0}
+    canvas.before:
+        Color:
+            rgba: (1, 0, 0, .5)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<BackGround>
+    BoxLayout:
+        size: root.size_window
+        Image:
+            source: 'images/2.jpg'
+            size: root.size
