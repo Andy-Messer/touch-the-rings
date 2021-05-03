@@ -9,7 +9,9 @@ from kivy.core.window import Window
 from kivy.config import Config
 from kivy.clock import Clock
 from kivy.uix.image import Image
+import sys
 import random
+import time
 
 # Default Size of Window
 width, height = Window.size
@@ -98,13 +100,52 @@ class MyClock(Label):
         self.anim = Animation(a=0, duration=self.a)
 
         def finish_callback(animation, clock):
-            clock.text = "Time's up("
+            clock.text = "--:--"
 
         self.anim.bind(on_complete=finish_callback)
         self.anim.start(self)
 
     def reset(self):
-        self.a = 20
+        self.a = 40
+
+    def pause(self):
+        self.anim.stop(self)
+
+    def t_continue(self):
+        self.anim.start(self)
+
+    def on_a(self, instance, value):
+        self.text = str(round(value, 1))
+
+
+# Widget "Timer"
+class MyClockCountdown(Label):
+    a = NumericProperty(0)
+    pos_hint_x = 0
+    pos_hint_y = 0
+    font_size = 70
+
+    def start(self):
+        Animation.cancel_all(self)
+        self.anim = Animation(a=0, duration=self.a)
+
+        def finish_callback(animation, clock):
+            clock.text = "Start"
+            time.sleep(1)
+            TouchTheRingsApp.menu.countdown.remove_widget(self)
+            TouchTheRingsApp.menu.remove_widget(TouchTheRingsApp.menu.countdown)
+
+        self.anim.bind(on_complete=finish_callback)
+        self.anim.start(self)
+
+    def reset(self):
+        self.a = 40
+
+    def pause(self):
+        self.anim.stop(self)
+
+    def t_continue(self):
+        self.anim.start(self)
 
     def on_a(self, instance, value):
         self.text = str(round(value, 1))
@@ -120,12 +161,25 @@ class ScoreLabel(Label):
     pass
 
 
+class Pause(Widget):
+    size_window = Window.size
+
+    def Continue(self):
+        TouchTheRingsApp.menu.game.timer.start()
+        TouchTheRingsApp.menu.game.remove_widget(self)
+        return 'Continue'
+
+    def MainMenu(self):
+        TouchTheRingsApp.menu.game.remove_widget(self)
+        TouchTheRingsApp.menu.remove_widget(TouchTheRingsApp.menu.game)
+
+
 # Game Engine
 class RingsGame(Widget):
     # Window settings
     size_window = Window.size
     background = BackGround()
-
+    pause = Pause()
     # Objects in GamePlay
     score_text = StringProperty()
     text_task = ObjectProperty()
@@ -303,7 +357,7 @@ class RingsGame(Widget):
     # Simplified preparing to Analysis of combo's
     def preparing_analysis(self):
         used = set()
-        q_g = [1, 20,2,27,19,21,28,45,46,52]
+        q_g = [1, 20]
         for v in q_g:
             q = [v]
             color = self.balls[self.convert_to_key(v)].ball_color
@@ -324,7 +378,7 @@ class RingsGame(Widget):
     # Simplified Analyze of combo's
     def simplified_analysis(self):
         used = set()
-        q_g = [1, 20,2,27,19,21,28,45,46,52]
+        q_g = [1, 20]
         for v in q_g:
             q = [v]
             color = self.balls[self.convert_to_key(v)].ball_color
@@ -360,13 +414,83 @@ class RingsGame(Widget):
             self.score += 1
             self.score_text = str(self.score)
 
+    def press_pause(self):
+        self.timer.pause()
+        self.add_widget(self.pause)
+
+    def reset(self):
+        self.timer.start()
+        self.timer.reset()
+        self.text_task = self.set_new_task()
+
+
+class Exit_window(Widget):
+    size_window = Window.size
+
+    def Cancel(self):
+        return 'Cancel'
+
+    def __del__(self):
+        TouchTheRingsApp.menu.remove_widget(self)
+
+    def exit(self):
+        sys.exit()
+
+
+class Countdown(Widget):
+    size_window = Window.size
+    clock = MyClock()
+
+    def start(self):
+        self.clock.reset()
+        self.clock.start()
+
+
+class Rules(Widget):
+    size_window = Window.size
+
+    def return_Menu(self):
+        TouchTheRingsApp.menu.remove_widget(self)
+
+
+class Author_widget(Widget):
+    size_window = Window.size
+
+    def return_Menu(self):
+        TouchTheRingsApp.menu.remove_widget(self)
+
+
+class Menu(Widget):
+    size_window = Window.size
+    exit = Exit_window()
+    game = RingsGame()
+    countdown = Countdown()
+    rules = Rules()
+    author = Author_widget()
+
+    def press_Game(self):
+        self.game.reset()
+        # self.countdown.start()
+        # self.add_widget(self.countdown)
+        Clock.schedule_interval(self.game.update, 1 / 90)
+        self.add_widget(self.game)
+
+    def press_Author(self):
+        self.add_widget(self.author)
+
+    def press_Rules(self):
+        self.add_widget(self.rules)
+
+    def press_Exit(self):
+        self.add_widget(self.exit)
+
 
 # App
 class TouchTheRingsApp(App):
+    menu = Menu()
+
     def build(self):
-        game = RingsGame()
-        Clock.schedule_interval(game.update, 1 / 90)
-        return game
+        return self.menu
 
 
 if __name__ == '__main__':
