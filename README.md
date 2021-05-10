@@ -6,11 +6,16 @@ Description
 
 GENERAL USAGE NOTES
 ---
-- Touch_the_rings does not support IOS or Windows.
+- Touch_the_rings does not support IOS.
 
 - This game is intended only as entertainment content, the author is not responsible for the psyche of the people who play it.
 
-Installing under ...
+#Installing 
+---
+##pyhton main.py
+if you want to install to android
+find ratio of your screen
+and select bin[ratio]
 ---
 - Some text there...
 

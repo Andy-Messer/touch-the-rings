@@ -1,0 +1,384 @@
+<RingsGame>
+
+
+    FloatLayout:
+        size: root.size_window
+        Button:
+            background_color: (0,0,0,0)
+    FloatLayout:
+        BackGround:
+
+
+    GridLayout:
+        cols: 2
+        size: root.size_window
+        Button:
+            background_color: 1, 0, 0, 0
+            on_press: root.press(1)
+
+        Button:
+            background_color: 1, 0, 0, 0
+            on_press: root.press(2)
+
+    FloatLayout:
+        size: root.size_window
+
+        Button:
+            size_hint: (0.20, 0.10)
+            pos_hint:{"x":0.8, "y":0.05}
+            font_size: 70
+            background_color: (0,0,0,0)
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'images/5.jpg'
+            text: str("||")
+            on_press: root.press_pause()
+
+    FloatLayout:
+        size: root.size_window
+
+        TaskLabel:
+
+            size_hint: (0.20, 0.20)
+            pos_hint:{"x":.8, "y":.8}
+            text: "[color=ffffff]" + str(root.text_task) + "[/color]"
+
+    FloatLayout:
+        size: root.size_window
+
+        ScoreLabel:
+
+            size_hint: (0.20, 0.20)
+            pos_hint:{"x":0, "y":.8}
+            text: "[color=ffffff]" + str(root.score_text) + "[/color]"
+
+
+<TaskLabel>:
+    font_size: 70
+    markup: True
+
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: 'images/5.jpg'
+
+<ScoreLabel>:
+    font_size: 70
+    markup: True
+
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: 'images/5.jpg'
+
+<Ball>
+    FloatLayout:
+        size: root.size_window
+        Image:
+            source: root.ball_status
+            size: self.size
+
+<MyClock>
+    size: root.width, root.height
+    font_size: 70
+
+    size_hint: (2,2)
+    pos_hint:{"x":0, "y":0}
+    canvas.before:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: 'images/5.jpg'
+
+<BackGround>
+    BoxLayout:
+        size: (2310, 1080)
+        pos: ( root.size_window[0]/2 - 2310/2, 0)
+        Image:
+            source: 'images/4.jpg'
+            size: root.size_window
+            allow_stretch: 1
+
+<Menu>
+    FloatLayout:
+        size: root.size_window
+        Button:
+            background_color: (0,0,0,0)
+    FloatLayout:
+        size: (2310, 1080)
+        pos: ( root.size_window[0]/2 - 2310/2, 0)
+        FloatLayout:
+            Image:
+                source: 'images/1.jpg'
+                allow_stretch: 1
+
+        Button:
+            size_hint: (0.20, 0.10)
+            background_color: (0,0,0,0)
+            font_size: 60
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'images/5.jpg'
+            pos_hint:{"x":0.4, "y":.4}
+            on_press: root.press_Rules()
+            text: "Rules"
+        Button:
+            size_hint: (0.20, 0.10)
+            background_color: 56/255,56/255,209/255, 0
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'images/5.jpg'
+            font_size: 60
+            pos_hint:{"x":0.4, "y":.6}
+            text: "New Game"
+            on_press: root.press_Game()
+        Button:
+            size_hint: (0.20, 0.10)
+            background_color: 56/255,56/255,209/255, 0
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'images/5.jpg'
+            font_size: 60
+            text: "Exit"
+            on_press: root.press_Exit()
+            pos_hint:{"x":0.4, "y":.2}
+
+        Button:
+            size_hint: (0.30, 0.10)
+            pos_hint:{"x":0.35, "y":.8}
+            on_press: root.press_Author()
+        BoxLayout:
+            size_hint: (0.30, 0.10)
+            pos_hint:{"x":0.35, "y":.8}
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'images/5.jpg'
+        Label:
+            size_hint: (0.20, 0.10)
+            pos_hint:{"x":0.4, "y":.8}
+            font_size: 70
+            markup: True
+            text: "[color=ffffff]" + str("Touch the Rings") + "[/color]"
+
+
+
+
+
+
+<Exit_window>
+    FloatLayout:
+        size: root.size_window
+        Button:
+            background_color: (0,0,0,0)
+    FloatLayout:
+        size: root.size_window
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: (0,0,0, 0.3)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.40, 0.40)
+            pos_hint:{"x":0.30, "y":.35}
+            canvas:
+                Color:
+                    rgba: (143/255,144/255,180/255, 0.7)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.40, 0.40)
+            pos_hint:{"x":0.31, "y":.36}
+            canvas:
+                Color:
+                    rgba: (56/255,56/255,209/255, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.39, 0.39)
+            pos_hint:{"x":0.315, "y":.365}
+            canvas:
+                Color:
+                    rgba: (123/255,124/255,160/255 , 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.38, 0.38)
+            pos_hint:{"x":0.32, "y":.37}
+            canvas:
+                Color:
+                    rgba: (56/255,56/255,209/255, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.30, 0.20)
+            pos_hint:{"x":0.36, "y":.50}
+
+            Label:
+                font_size: 70
+                markup: True
+                text: "[color=8586aa]" + str("Are you sure?") + "[/color]"
+
+
+        BoxLayout:
+            size_hint: (0.10, 0.09)
+            pos_hint:{"x":0.35+0.04, "y":.37+0.03}
+            Button:
+                on_press: root.exit()
+                font_size: 40
+                markup: True
+                background_color: (123/255,124/255,160/255, 1)
+                text: "[color=3838d1]" + str("YES") + "[/color]"
+        BoxLayout:
+            size_hint: (0.10, 0.09)
+            pos_hint:{"x":0.35+0.17, "y":.37+0.03}
+            Button:
+                on_press: root.__del__()
+                font_size: 40
+                markup: True
+                background_color: (123/255,124/255,160/255, 1)
+                text: "[color=3838d1]" + str("CANCEL") + "[/color]"
+
+<Pause>
+    FloatLayout:
+        size: root.size_window
+        Button:
+            background_color: (0,0,0,0)
+    FloatLayout:
+        size: root.size_window
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: (0,0,0, 0.3)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.40, 0.40)
+            pos_hint:{"x":0.30, "y":.35}
+            canvas:
+                Color:
+                    rgba: (143/255,144/255,180/255, 0.7)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.40, 0.40)
+            pos_hint:{"x":0.31, "y":.36}
+            canvas:
+                Color:
+                    rgba: (56/255,56/255,209/255, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.39, 0.39)
+            pos_hint:{"x":0.315, "y":.365}
+            canvas:
+                Color:
+                    rgba: (123/255,124/255,160/255 , 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.38, 0.38)
+            pos_hint:{"x":0.32, "y":.37}
+            canvas:
+                Color:
+                    rgba: (56/255,56/255,209/255, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        BoxLayout:
+            size_hint: (0.30, 0.20)
+            pos_hint:{"x":0.36, "y":.50}
+
+            Label:
+                font_size: 70
+                markup: True
+                text: "[color=8586aa]" + str("On Pause") + "[/color]"
+
+
+        BoxLayout:
+            size_hint: (0.10, 0.09)
+            pos_hint:{"x":0.35+0.04, "y":.37+0.03}
+            Button:
+                on_press: root.MainMenu()
+                font_size: 40
+                markup: True
+                background_color: (123/255,124/255,160/255, 1)
+                text: "[color=3838d1]" + str("Menu") + "[/color]"
+        BoxLayout:
+            size_hint: (0.10, 0.09)
+            pos_hint:{"x":0.35+0.17, "y":.37+0.03}
+            Button:
+                on_press: root.Continue()
+                font_size: 40
+                markup: True
+                background_color: (123/255,124/255,160/255, 1)
+                text: "[color=3838d1]" + str("Continue") + "[/color]"
+
+<Rules>
+    FloatLayout:
+        size: root.size_window
+        Button:
+            background_color: (0,0,0,0)
+    BoxLayout:
+        size: root.size_window
+        pos: ( 0, 0)
+        Image:
+            source: 'rules.jpeg'
+            size: self.size
+            pos: self.pos
+    FloatLayout:
+        size: root.size_window
+        Button:
+            size_hint: (0.2,0.2)
+            background_color: (1, 0, 0, 1)
+            pos_hint: {"x":0.4, "y":.8}
+            font_size: 50
+            text: "Return to menu"
+            on_press: root.return_Menu()
+
+<Author_widget>
+    FloatLayout:
+        size: root.size_window
+        Button:
+            background_color: (0,0,0,0)
+    BoxLayout:
+        size: root.size_window
+        canvas:
+            Color:
+                rgb: 0, 0, 0, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            font_size: 50
+            text: "It's my python Project in University 'MIPT'. P.s. Krotov Andrey Б05-021"
+    FloatLayout:
+        size: root.size_window
+        Button:
+            size_hint: (0.2,0.2)
+            background_color: (1, 0, 0, 1)
+            pos_hint: {"x":0.4, "y":.8}
+            font_size: 50
+            text: "Return to menu"
+            on_press: root.return_Menu()
