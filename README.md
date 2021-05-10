@@ -6,8 +6,6 @@ Description
 
 GENERAL USAGE NOTES
 ---
-- Touch_the_rings does not support IOS.
-
 - This game is intended only as entertainment content, the author is not responsible for the psyche of the people who play it.
 
 #Installing 
