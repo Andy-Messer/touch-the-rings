@@ -15,10 +15,11 @@ GENERAL USAGE NOTES
 # Installing 
 
 ## pyhton main.py
+
 if you want to install to android
 find ratio of your screen
 and select bin[ratio]
----
+
 - Some text there...
 
 Touch_the_rings can be reached at:
