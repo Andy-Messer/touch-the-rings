@@ -7,7 +7,6 @@ Description
 | pic. 1 | pic. 2 |
 | ---- | ---- |
 | ![photo_2021-05-10_13-16-09](https://user-images.githubusercontent.com/70897625/117665094-2993ad00-b1ab-11eb-8c3c-2b69e2851afb.jpg) | ![photo_2021-05-10_13-16-06](https://user-images.githubusercontent.com/70897625/117665063-21d40880-b1ab-11eb-9171-583475396791.jpg)
-|
 
 GENERAL USAGE NOTES
 ---
