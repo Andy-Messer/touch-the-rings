@@ -13,7 +13,7 @@ GENERAL USAGE NOTES
 - This game is intended only as entertainment content, the author is not responsible for the psyche of the people who play it.
 
 #Installing 
----
+
 ##pyhton main.py
 if you want to install to android
 find ratio of your screen
